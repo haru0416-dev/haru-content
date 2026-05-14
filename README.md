@@ -5,6 +5,7 @@
 ## ディレクトリ
 
 - `articles/` — Zenn 記事。push すると [zenn.dev/haru0416](https://zenn.dev/haru0416) に自動公開される
+- `books/` — Zenn 本。今は空（Zenn 連携が両ディレクトリの存在を要求するため `.keep` だけ）
 - `blog/` — Portfolio サイト ([haru0416.dev](https://haru0416.dev)) 専用の記事。`/blog/<slug>` で配信
 - `images/` — Zenn 記事の画像置き場
 
