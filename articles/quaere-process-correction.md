@@ -3,7 +3,7 @@ title: "コーディングエージェントが雑になる4箇所に、skill �
 emoji: "🔎"
 type: "tech"
 topics: ["claudecode", "codex", "ai", "agent", "llm"]
-published: false
+published: true
 ---
 
 コーディングエージェントは速い。指示すれば実装するし、テストも書くし、コミットもしてくれる。ただ、しばらく使っていると、速さの裏でいつも同じ場所が雑になることに気づく。
