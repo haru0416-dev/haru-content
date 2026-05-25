@@ -56,6 +56,10 @@ Codex CLI には、ファイル読み取り専用のツールがない。ファ�
 
 ここで一点、留保しておく。「同じ Codex CLI ハーネスで、動かすモデルだけ Claude などに差し替えたら 220 が消えるか」は、今回測れていない。Codex CLI は実装上 OpenAI のモデルに紐づいているし、別モデルを強引に載せた比較も手元にない。ここまでで言えるのは「sed の文字列はモデルが出している」「`skill` ツール経路では起きない」までで、「Codex CLI 自体は無罪」とまでは言い切れない。
 
+逆方向の差し替え ── **モデルは gpt-5.5 のまま、ハーネスだけ Claude Code 側に差し替える** ── は [claudex](https://github.com/EdamAme-x/claudex) で測れた。claudex は Claude Code を OpenAI 互換 endpoint に向けて起動するラッパで、tool 形状と prompt は Claude Code のまま、推論は gpt-5.5 が担当する。3 セッション走らせて、3 件全部で **first move は `Skill` tool の呼び出し** になった。`sed -n '1,Np' SKILL.md` は 0 件。さらに 2 件では、`Skill(...)` の直後に SKILL.md 全文 (frontmatter のみ落とした 439 / 259 / 353 行) が user-message envelope で次のターンに挿入され、model はそれを読んでから具体作業に入っていた。残り 1 件は Skill 実行が claudex 側で error を返したが、それでも model は sed には落ちず、Glob/Bash/Agent で進めた。
+
+つまり 220 は「gpt-5.5 が無条件にやること」ではなく、Codex CLI が skill 専用 tool を持っていないから model が shell に落ちる、その shell イディオムが 220 行で出る ── という harness-shape 側の挙動だ、と言ってよさそうだ。n=3 の小さな観察なので断定はしない。
+
 ## なぜ 220 なのか
 
 ここを理解するには、Codex の skill の仕組みを少し見ておく必要がある。
