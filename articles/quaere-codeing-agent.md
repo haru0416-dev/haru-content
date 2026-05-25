@@ -51,10 +51,10 @@ skill というのは、Claude Code や Codex に読ませる Markdown ファイ
 インストールは1行。
 
 ```
-curl -fsSL https://quaere.dev/install.sh | sh
+npx quaere-cli install
 ```
 
-これで Claude Code と Codex の両方に skill が入ります。とはいえ、「確かめてから動け」が売りのツールが `curl | sh` で入るのも据わりが悪い。中身を見てから入れたい人は、スクリプトを読むか、`cargo install quaere-cli`、または Homebrew を使ってください。MIT ライセンス、リポジトリは [haru0416-dev/quaere](https://github.com/haru0416-dev/quaere) です。
+これで Claude Code と Codex の両方に skill が入ります。MIT ライセンス、リポジトリは [haru0416-dev/quaere](https://github.com/haru0416-dev/quaere) です。
 
 ひとつ注意。Quaere はエージェントを賢くする道具じゃない。立ち止まって確かめさせる道具です。タイポ修正みたいな軽い作業には要らない。原因のわからないバグ、影響範囲の広い変更、セキュリティが絡む場所。「確かめずに進まれると困る」ところで効きます。
 
