@@ -3,7 +3,7 @@ title: "skill は増やすほど強くなるのか ── 『More Skills, Worse 
 emoji: "🔎"
 type: "tech"
 topics: ["claudecode", "codex", "ai", "agent", "llm"]
-published: false
+published: true
 ---
 
 :::message
