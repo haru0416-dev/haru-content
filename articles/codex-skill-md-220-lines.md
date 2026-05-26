@@ -60,6 +60,10 @@ Codex CLI には、ファイル読み取り専用のツールがない。ファ�
 
 つまり 220 は「gpt-5.5 が無条件にやること」ではなく、Codex CLI が skill 専用 tool を持っていないから model が shell に落ちる、その shell イディオムが 220 行で出る ── という harness-shape 側の挙動だ、と言ってよさそうだ。n=3 の小さな観察なので断定はしない。
 
+ついでに、Skill から Skill を呼ぶ連鎖の側にも cap は等しく効いていた。Codex セッションを当たり直すと、Skill A の body の handoff 記述を読んだ model が、続けて Skill B (と C) を読みにいく挙動は実際に起きている。代表例の 3-chain では、`quaere-audit → evidence-gated-review → external-grounding` を続けざまに `sed -n '1,220p'` で読んでいた。**chain の 1 件目だけ 220、2 件目以降は別の数字、ということは無かった**。全 hop が 220 で揃う。これは「Codex は最初の skill だけ浅く読む」のではなく、「**skill を 1 本読むときの cap がそのまま chain にも適用される**」ことを意味する。
+
+結果として、SKILL.md の **handoff 記述自体が 220 行を超えた位置にあると、その chain は起きない**。手元の Quaere 5 skill で他 skill 名が最初に登場する行を拾うと、quaere-audit と quaere-execution は全部 220 内に入っているが、quaere-semantic は 4 つのうち 3 つが line 221 ── 1 行差で構造的に届かない。Codex 経路での chain 率 (7%) が Claude Code/OpenCode 経路 (19%) より低いのは、おそらくこの authoring 側のずれが効いている。
+
 ## なぜ 220 なのか
 
 ここを理解するには、Codex の skill の仕組みを少し見ておく必要がある。
