@@ -14,6 +14,8 @@ published: true
 私が書いた「仕様に沿って書かれた SKILL.md はだいたい 200 行に収まる」「だから 220 はまともな skill の長さ + 余白」「仕様どおりに書けばいい」は、仕様の許容ライン (500 行) を過小に見積もった上での推測で、事実と逆向きです。220 cap は仕様遵守ではなく **「activation 時に本文を丸ごと読む」という仕様の prescription に反した truncation** と位置付ける方が正確です。
 
 該当箇所は本文中に取消線で残し、その横に訂正を併記しています。記事の主要観測 (gpt-5.5 + Codex CLI で sed が 220 で打ち切ること、harness 経由なら届くこと等) は変わりませんが、authoring 助言 (200 行内に収める) の **位置付け** は「仕様への適合」ではなく「spec-violating な cap への workaround」に改めます。
+
+更に root cause まで辿った続編を別記事にまとめました: [Codex が SKILL.md を 220 行で切る原因は、Codex 自身の prompt の 1 行だった](https://zenn.dev/haru0416/articles/codex-skill-md-220-root-cause)
 :::
 
 Quaere という skill 集を作っている。コーディングエージェントが雑になりやすい箇所にゲートを置く、5本の skill だ。
